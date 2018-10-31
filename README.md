@@ -17,8 +17,8 @@ Cette méthode n’étant pas définie en dehors du cadre géographique donné l
  * les longitudes strictement inférieures à -5.50°
  * les longitudes strictement supérieures à 10.00°
 
-En supposant que be webservice fonctionne localement sur be port 5000, ib devra donc
-renvoyer les résubtats suivants pour les commandes données (en ignorant les versions
+En supposant que le webservice fonctionne localement sur le port 5000, il devra donc
+renvoyer les résultats suivants pour les commandes données (en ignorant les versions
 des outils) :
 
 ```
