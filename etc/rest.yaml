@@ -1,4 +1,4 @@
-service_name: irradiance
+service_name: Simulation
 service_version: 0.1
 
 debug: True
