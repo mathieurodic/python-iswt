@@ -1,8 +1,7 @@
 import flask
-import flask.logging
+import flask.views
 import flask_restful
 import flasgger
-import logging
 
 import common.config
 import common.logging
@@ -32,6 +31,16 @@ def create():
 
     # inititialize REST
     api = flask_restful.Api(app) # see https://github.com/flask-restful/flask-restful/issues/116
+
+    # default root resource
+    class RootResource(flask.views.MethodView):
+        def get(self):
+            return {
+                'service_name': common.config.get('rest', 'service_name'),
+                'service_version': common.config.get('rest', 'service_version'),
+                'documentation_url': '/apidocs',
+            }
+    api.add_resource(RootResource, '/')
 
     # iterate over mappings and integrate them into the Flask application
     rest_mappings = common.config.get('rest', 'mappings')
@@ -64,7 +73,7 @@ def create():
             swagger_config['headers'][index] = ('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH')
     swagger_config['specs'][0].update(
         version = common.config.get('rest', 'service_version'),
-        title = 'API ' + (common.config.get('rest', 'service_name') or ''),
+        title = '%s service documentation' % (common.config.get('rest', 'service_name') or '', ),
         description = 'Documentation for the access points on API ' + (common.config.get('rest', 'service_name') or ''),
     )
     flasgger.Swagger(app, config = swagger_config)
