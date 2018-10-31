@@ -6,4 +6,4 @@
 
 import common.app
 
-app = common.app.create()
+application = common.app.create()
