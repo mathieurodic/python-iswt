@@ -1,0 +1,7 @@
+frame:
+    latitude:
+        min: 41.0
+        max: 51.5
+    longitude:
+        min: -5.5
+        max: 10.0

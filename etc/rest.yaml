@@ -1,0 +1,9 @@
+service_name: irradiance
+service_version: 0.1
+
+debug: True
+
+mappings:
+    -
+        url: /data
+        resource: resources.data.DataResource

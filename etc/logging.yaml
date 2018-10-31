@@ -1,0 +1,41 @@
+# see https://docs.python.org/2/library/logging.config.html
+# for more details on logging configuration options
+
+version: 1
+disable_existing_loggers: False
+formatters:
+    time_and_level:
+        format: "%(asctime)s[%(process)d]:%(levelname)s: %(message)s"
+handlers:
+
+    root:
+        class: logging.handlers.TimedRotatingFileHandler
+        when: D
+        interval: 1
+        level: INFO
+        filename: logs/root.log
+        formatter: time_and_level
+    http:
+        class: logging.handlers.TimedRotatingFileHandler
+        when: D
+        interval: 1
+        level: DEBUG
+        filename: logs/http.log
+        formatter: time_and_level
+
+root:
+    level: DEBUG
+    handlers:
+        - root
+
+loggers:
+    root:
+        level: DEBUG
+        propagate: 0
+        handlers:
+            - root
+    http:
+        level: DEBUG
+        propagate: 0
+        handlers:
+            - http
