@@ -1,5 +1,6 @@
 import flask
 import flask.views
+import flask_cors
 import flask_restful
 import flasgger
 
@@ -30,6 +31,7 @@ def create():
         print('(Re)loaded application...')
 
     # inititialize REST
+    cors = flask_cors.CORS(app, resources={r'*': {'origins': '*'}})
     api = flask_restful.Api(app) # see https://github.com/flask-restful/flask-restful/issues/116
 
     # default root resource
